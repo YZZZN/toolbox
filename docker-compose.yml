@@ -1,7 +1,10 @@
 version: '3.8'
 services:
 
-  # Building and testing environment
+  hi: 
+    image: "alpine"
+    ports:
+      - "8080:8889"
   dev:
     build:
       context: .
