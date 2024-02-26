@@ -1,4 +1,5 @@
-FROM python:3.12-slim-bullseye
+FROM python:3.12-slim-bullseye 
+# 3.12 is the latest version of Python as of 2021-10-20
 
 # Passed from Github Actions
 ARG GIT_VERSION_TAG=unspecified
@@ -23,17 +24,10 @@ RUN apt-get -yq install --no-install-recommends \
         tcpdump traceroute iproute2 dnsutils whois mtr iftop iputils-ping wget nmap netcat-traditional \
         procps \
         htop \
-        screen tmux \
-        unzip zip \
-        jq \
-        build-essential \
-        software-properties-common \
-        tree \
-        lsof \
-        fish \
-        && apt-get autoremove -y \
-        && apt-get clean -y \
-        && rm -rf /var/lib/apt/lists/*
+    # Clean up
+    && apt-get autoremove -y \
+    && apt-get clean -y \
+    && rm -rf /var/lib/apt/lists/* 
 
 # ensure that there is a place to mount the host files
 RUN mkdir /host
