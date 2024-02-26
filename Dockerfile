@@ -24,17 +24,10 @@ RUN apt-get -yq install --no-install-recommends \
         tcpdump traceroute iproute2 dnsutils whois mtr iftop iputils-ping wget nmap netcat-traditional \
         procps \
         htop \
-        screen tmux \
-        unzip zip \
-        jq \
-        build-essential \
-        software-properties-common \
-        tree \
-        lsof \
-        fish \
-        && sh -c "curl -fsSL https://starship.rs/install.sh | bash -s -- --yes" \
-        && apt-get clean -y \
-        && rm -rf /var/lib/apt/lists/*
+    # Clean up
+    && apt-get autoremove -y \
+    && apt-get clean -y \
+    && rm -rf /var/lib/apt/lists/* 
 
 # ensure that there is a place to mount the host files
 RUN mkdir /host
